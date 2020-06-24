@@ -1,0 +1,1 @@
+node trending.js "credentials.json"
