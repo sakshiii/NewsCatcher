@@ -2,7 +2,7 @@ let request=require("request");
 let fs=require("fs");
 let cheerio=require("cheerio");
 let puppeteer = require("puppeteer");
-let toBeSearched="India news 2020"
+let toBeSearched="Delhi news 2020"
 let url="https://www.indiatoday.in/trending-news";
 
 console.log("work Start")
@@ -16,8 +16,7 @@ request(url,function(err,response,data)
     if(err==null && response.statusCode===200){
        
             parseHtml(data); 
-           // let $ = cheerio.load("body");
-
+           
        } 
     else if(response.statusCode=== 404)
         console.log("Page not found");
@@ -76,31 +75,32 @@ function parseHtml(data)
     await tab.click("div[class='css-1dbjc4n r-eqz5dr r-1777fci'] div[role='button'] span[class='css-901oao css-16my406 r-1qd0xha r-ad9z0x r-bcqeeo r-qvutc0'");
     console.log("logged in");
     await tab.click("a[role='button']>div.css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-1qd0xha.r-a023e6.r-vw2c0b.r-1777fci.r-eljoum.r-dnmrzs.r-bcqeeo.r-q4m81j.r-qvutc0");
-    console.log("tweeet button clicked");
+    console.log("tweet button clicked");
     
     console.log("tweet type button is about to be clicked");
     
     let tbutton = await tab.$("div>div.public-DraftStyleDefault-block.public-DraftStyleDefault-ltr")
     await tbutton.type(`trending News:
-    ${topName[0]}`)
+    ${topName[7]}`)
     await {waitUntil:"networkidle2"}
     
-    console.log("tweeet -submit button is about to be clicked");
+    console.log("tweet -submit button is about to be clicked");
 
     await tab.click("div[data-testid='tweetButton'] span[class='css-901oao css-16my406 r-1qd0xha r-ad9z0x r-bcqeeo r-qvutc0']");
     console.log("tweeet -submit button is  clicked");
 
     //Pdf of top 10 news headlines:    
+    await pdfG(browser);
+    console.log("pdf generated")
     
-    
-    console.log("Youtube Opening....");
-    var play = false;
     //window.prompt("Do you want to see the latest news via youtube?", "No");
+    console.log("Youtube Opening....");
+    var play = true;
+    
     if(play)
         await playVideo(browser);
     console.log("video played")
-    await pdfG(browser);
-    console.log("pdf generated")
+    
     browser.close();
 
     } 
@@ -132,7 +132,7 @@ async function pdfG(browser) {
 		await page.emulateMedia ('screen');
 		await page.pdf ({
 			// name of your pdf file in directory
-			path: './NewsTesting.pdf', 
+			path: 'pdfs/NewsTesting.pdf', 
 			//  specifies the format
 			format: 'A4', 
 			// print background property
@@ -155,17 +155,14 @@ async function playVideo(browser)
         await tab.type("#container input#search",toBeSearched,{ delay: 200 });
         await Promise.all([tab.keyboard.press("Enter"), tab.waitForNavigation({ waitUntil: "networkidle2" })]);
         await tab.waitForSelector("div#title-wrapper")
-       //await tab.waitForSelector("#contents a#video-title")
-
+       
        //get the 1st result
        let firstRes = await tab.$("div#title-wrapper")
        await Promise.all([firstRes.click(), tab.waitForNavigation({ waitUntil: "networkidle2" })])
 
-       //fullscreen mode  button.icon-button.fullscreen-icon 
+       //fullscreen mode   
        await tab.waitForSelector("button.ytp-fullscreen-button.ytp-button");
        await tab.click("button.ytp-fullscreen-button.ytp-button");
-       
-       //let time=await tab.waitForSelector("span.time-second")
       
        await tab.waitFor(110*1000);
        await tab.close();
