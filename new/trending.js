@@ -2,8 +2,7 @@ let request=require("request");
 let fs=require("fs");
 let cheerio=require("cheerio");
 let puppeteer = require("puppeteer");
-//let path=require('path');
-let toBeSearched="US news"
+let toBeSearched="India news 2020"
 let url="https://www.indiatoday.in/trending-news";
 
 console.log("work Start")
@@ -14,10 +13,8 @@ let topName=[];
 request(url,function(err,response,data)
 {
     console.log("come back later")
-   // console.log(response);
     if(err==null && response.statusCode===200){
        
-            fs.writeFileSync("khabari.html",data);
             parseHtml(data); 
            // let $ = cheerio.load("body");
 
@@ -72,26 +69,20 @@ function parseHtml(data)
     let numberofPages=await browser.pages();
     let tab=numberofPages[0];
     await tab.goto(turl,{waitUntil:"networkidle2"});
-    await tab.click("div.css-1dbjc4n.r-16y2uox>a[role='button']>.css-901oao.r-13gxpu9.r-16y2uox.r-1777fci.r-18u37iz.r-1awozwy.r-1qd0xha.r-6koalj.r-a023e6.r-bcqeeo.r-dnmrzs.r-eljoum.r-q4m81j.r-qvutc0.r-vw2c0b");
-    await tab.waitForSelector("div.css-901oao.r-13qz1uu.r-16dba41.r-1awozwy.r-1b6yd1w.r-1qd0xha.r-6koalj.r-ad9z0x.r-bcqeeo.r-hkyrab.r-k200y.r-qvutc0 > input[name='session[username_or_email]']");
-    await tab.type("div.css-901oao.r-13qz1uu.r-16dba41.r-1awozwy.r-1b6yd1w.r-1qd0xha.r-6koalj.r-ad9z0x.r-bcqeeo.r-hkyrab.r-k200y.r-qvutc0 > input[name='session[username_or_email]']",email,{delay : 200});
-    await tab.waitForSelector("div.css-901oao.r-13qz1uu.r-16dba41.r-1awozwy.r-1b6yd1w.r-1qd0xha.r-6koalj.r-ad9z0x.r-bcqeeo.r-hkyrab.r-k200y.r-qvutc0 > input[name='session[password]']");
-    await tab.type("div.css-901oao.r-13qz1uu.r-16dba41.r-1awozwy.r-1b6yd1w.r-1qd0xha.r-6koalj.r-ad9z0x.r-bcqeeo.r-hkyrab.r-k200y.r-qvutc0 > input[name='session[password]']",pwd,{delay : 200})
-    await tab.click("div main[role='main'] form[method='post'] div[role='button'] > .css-901oao.r-16y2uox.r-1777fci.r-18u37iz.r-1awozwy.r-1qd0xha.r-6koalj.r-a023e6.r-bcqeeo.r-dnmrzs.r-eljoum.r-jwli3a.r-q4m81j.r-qvutc0.r-vw2c0b")
+    await tab.waitForSelector("div.css-901oao.r-13qz1uu.r-16dba41.r-1awozwy.r-1b6yd1w.r-1qd0xha.r-6koalj.r-ad9z0x.r-bcqeeo.r-jwli3a.r-k200y.r-qvutc0 > input[name='session[username_or_email]']");
+    await tab.type("div.css-901oao.r-13qz1uu.r-16dba41.r-1awozwy.r-1b6yd1w.r-1qd0xha.r-6koalj.r-ad9z0x.r-bcqeeo.r-jwli3a.r-k200y.r-qvutc0 > input[name='session[username_or_email]']",email,{delay : 200});
+    await tab.waitForSelector("div.css-901oao.r-13qz1uu.r-16dba41.r-1awozwy.r-1b6yd1w.r-1qd0xha.r-6koalj.r-ad9z0x.r-bcqeeo.r-jwli3a.r-k200y.r-qvutc0 > input[name='session[password]']");
+    await tab.type("div.css-901oao.r-13qz1uu.r-16dba41.r-1awozwy.r-1b6yd1w.r-1qd0xha.r-6koalj.r-ad9z0x.r-bcqeeo.r-jwli3a.r-k200y.r-qvutc0 > input[name='session[password]']",pwd,{delay : 200})
+    await tab.click("div[class='css-1dbjc4n r-eqz5dr r-1777fci'] div[role='button'] span[class='css-901oao css-16my406 r-1qd0xha r-ad9z0x r-bcqeeo r-qvutc0'");
     console.log("logged in");
-
-    //await Promise.all([await tab.click("div.css-1dbjc4n.r-1awozwy.r-jw8lkh.r-e7q0ms span.css-901oao.css-16my406.css-bfa6kz.r-1qd0xha.r-ad9z0x.r-bcqeeo.r-qvutc0"),tab.waitForNavigation({ waitUntil:"networkidle2"})])
-
-    await tab.click("a[role='button']>div.css-901oao.r-16y2uox.r-1777fci.r-18u37iz.r-1awozwy.r-1qd0xha.r-6koalj.r-a023e6.r-bcqeeo.r-dnmrzs.r-eljoum.r-jwli3a.r-q4m81j.r-qvutc0.r-vw2c0b");
+    await tab.click("a[role='button']>div.css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-1qd0xha.r-a023e6.r-vw2c0b.r-1777fci.r-eljoum.r-dnmrzs.r-bcqeeo.r-q4m81j.r-qvutc0");
     console.log("tweeet button clicked");
     
-    console.log("tweeet type button is about to be clicked");
+    console.log("tweet type button is about to be clicked");
     
     let tbutton = await tab.$("div>div.public-DraftStyleDefault-block.public-DraftStyleDefault-ltr")
     await tbutton.type(`trending News:
-     ${topName[0]}
-        ${topName[1]}
-        ${topName[4]}  `)
+    ${topName[0]}`)
     await {waitUntil:"networkidle2"}
     
     console.log("tweeet -submit button is about to be clicked");
@@ -103,7 +94,10 @@ function parseHtml(data)
     
     
     console.log("Youtube Opening....");
-    await playVideo(browser);
+    var play = false;
+    //window.prompt("Do you want to see the latest news via youtube?", "No");
+    if(play)
+        await playVideo(browser);
     console.log("video played")
     await pdfG(browser);
     console.log("pdf generated")
@@ -119,7 +113,7 @@ function parseHtml(data)
 async function pdfG(browser) {
 	try {		
 		// launch puppeteer API
-		//const browser = await puppeteer.launch();
+		
 		const page = await browser.newPage();
         // content of PDF file
         
@@ -134,18 +128,19 @@ async function pdfG(browser) {
         ${topName[8]}<br/> <br/>
         ${topName[9]}<br/> <br/>
         ${topName[10]}`);
+        await page.waitFor(10*1000)
 		await page.emulateMedia ('screen');
 		await page.pdf ({
 			// name of your pdf file in directory
-			path: 'pdfs/NewsTest.pdf', 
+			path: './NewsTesting.pdf', 
 			//  specifies the format
 			format: 'A4', 
 			// print background property
 			printBackground: true
 		});
-		// console message when conversion  is complete!
+		// console message when conversion  is complete :)
 		console.log ('done');
-		await browser.close();
+		//await browser.close();
 		process.exit();
 	} catch (e) {
 		console.log ('our error', e);
@@ -158,7 +153,6 @@ async function playVideo(browser)
         await tab.goto("https://www.youtube.com/",{ waitUntil:"networkidle2"});
         await tab.waitForSelector("#container input#search");
         await tab.type("#container input#search",toBeSearched,{ delay: 200 });
-        //await tab.click("span.yt-uix-button-content");
         await Promise.all([tab.keyboard.press("Enter"), tab.waitForNavigation({ waitUntil: "networkidle2" })]);
         await tab.waitForSelector("div#title-wrapper")
        //await tab.waitForSelector("#contents a#video-title")
@@ -173,6 +167,7 @@ async function playVideo(browser)
        
        //let time=await tab.waitForSelector("span.time-second")
       
-       await tab.waitFor(210*1000);
+       await tab.waitFor(110*1000);
+       await tab.close();
 }
 console.log("Doing other stuff");
