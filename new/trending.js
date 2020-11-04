@@ -74,7 +74,7 @@ function parseHtml(data)
     await tab.type("div.css-901oao.r-13qz1uu.r-16dba41.r-1awozwy.r-1b6yd1w.r-1qd0xha.r-6koalj.r-ad9z0x.r-bcqeeo.r-jwli3a.r-k200y.r-qvutc0 > input[name='session[password]']",pwd,{delay : 200})
     await tab.click("div[class='css-1dbjc4n r-eqz5dr r-1777fci'] div[role='button'] span[class='css-901oao css-16my406 r-1qd0xha r-ad9z0x r-bcqeeo r-qvutc0'");
     console.log("logged in");
-    await tab.click("a[role='button']>div.css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-1qd0xha.r-a023e6.r-vw2c0b.r-1777fci.r-eljoum.r-dnmrzs.r-bcqeeo.r-q4m81j.r-qvutc0");
+    await tab.click("div.css-1dbjc4n.r-1awozwy.r-vpgt9t.r-e7q0ms>a[role='button']>div.css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-1qd0xha.r-a023e6.r-b88u0q.r-1777fci.r-eljoum.r-dnmrzs.r-bcqeeo.r-q4m81j.r-qvutc0");
     console.log("tweet button clicked");
     
     console.log("tweet type button is about to be clicked");
